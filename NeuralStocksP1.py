@@ -4,11 +4,22 @@ import matplotlib.pyplot as plt
 import datetime as dt
 import requests
 import os
+import numpy as np
+import random
+import math
+import sys
 from bs4 import BeautifulSoup as bs
 from pandas_datareader import data
 
 data_source = 'alphavantage'
 api_key = 'S13H3V357VQ534EE'
+
+class Node(objec):
+    def __init__(self, numbers_of_input):
+        self.inputs = numbers_of_input
+        self.bias = random.uniform(0.0, 1.0)
+        self.weights = np.array([random.uniform(0.0, 1.0)] * numbers_of_input)
+        self.outputs = 0.0
 
 def get_historical_data(name, number_of_days):
     data = []
@@ -66,5 +77,4 @@ def get_alphavantage_data(ticker):
 get_alphavantage_data('googl')
 #for i in get_historical_data('googl', 10):
 #    print(i)
-# hello
 
