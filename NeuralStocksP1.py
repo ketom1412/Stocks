@@ -66,4 +66,5 @@ def get_alphavantage_data(ticker):
 get_alphavantage_data('googl')
 #for i in get_historical_data('googl', 10):
 #    print(i)
+# hello
 
