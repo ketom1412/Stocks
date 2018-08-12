@@ -69,6 +69,7 @@ def get_alphavantage_data(ticker):
         df = df.sort_values('Date')
         print('Data saved to : %s' %file_to_save)
         df.to_csv(file_to_save)
+        #temo
 
     else:
         print('File already exists. Loading data from CSV')
