@@ -21,6 +21,35 @@ class Node(objec):
         self.weights = np.array([random.uniform(0.0, 1.0)] * numbers_of_input)
         self.outputs = 0.0
 
+    def output(self):
+        return self.output
+
+    def getWeightAtIdx(self, idx):
+        return self.weights[idx]
+
+    def getBias(self):
+        return self.bias
+
+    def debug_info(self):
+        info = "Bias %f ; Weights:" %(self.bias)
+        for w in self.weights:
+            info+="%f," %(w)
+        return info
+
+    def calculateActivity(self, input_vector):
+        #linear basis function
+        activity = self.bias
+        activity += np.dot(input_vector, self.weights)
+        return activity
+
+    def activationFunction(self, input_vector):
+        #sigmoid activation
+        return 1.0/(1.0 + math.exp(-input_vector))
+
+    def calculate(self, input_vector):
+        activity_value = self.calculateActivity(input_vector)
+        self.output = self.activationFunction(activity_value)
+
 def get_historical_data(name, number_of_days):
     data = []
     url = "https://finance.yahoo.com/quote/" + name + "/history/"
@@ -69,7 +98,6 @@ def get_alphavantage_data(ticker):
         df = df.sort_values('Date')
         print('Data saved to : %s' %file_to_save)
         df.to_csv(file_to_save)
-        #temo
 
     else:
         print('File already exists. Loading data from CSV')
