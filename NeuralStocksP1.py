@@ -14,7 +14,7 @@ from pandas_datareader import data
 data_source = 'alphavantage'
 api_key = 'S13H3V357VQ534EE'
 
-class Node(objec):
+class Node(object):
     def __init__(self, numbers_of_input):
         self.inputs = numbers_of_input
         self.bias = random.uniform(0.0, 1.0)
