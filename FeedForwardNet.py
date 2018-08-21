@@ -32,3 +32,28 @@ class FeedForwardNet(object):
         self.network_output = np.array([0.0 for i in range(no_of_outputs)])
         self.errors = np.array([0.0 for i in range(no_of_outputs)])
         self.alpha = learning_rate
+
+    def getNetOutputs(self):
+        return self.network_output
+
+    def debug_info(self):
+        print("Number of Inputs: ", self.number_of_inputs)
+        print("Number of Hidden Nodes: ", self.hidden_node_list)
+        print("Number of Outputs: ", self.number_of_outputs)
+
+        print("Hidden Layer Node Weights:")
+        count = 1
+        for layer in self.hidden_nodes:
+            print("Hidden Layer", count, ": ")
+            count+=1
+            for node in layer:
+                print(node.debug_info())
+
+        print("Output Layer Node Weights:")
+        for node in self.output_layer:
+            node.debug_info()
+
+        print("Output from network:")
+        print(self.network_output)
+        print("Network Errors:")
+        print(self.errors)
