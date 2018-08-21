@@ -21,17 +21,17 @@ class Node(object):
     def output(self):
         return self.output
 
-    def getWeightAtIdx(self, idx):
-        return self.weights[idx]
-
-    def getBias(self):
-        return self.bias
-
     def debug_info(self):
         info = "Bias: %f ; Weights:" %(self.bias)
         for w in self.weights:
             info+="%f," %(w)
         return info
+
+    def getWeightAtIdx(self, idx):
+        return self.weights[idx]
+
+    def getBias(self):
+        return self.bias
 
     def calculateActivity(self, input_vector):
         #linear basis function
@@ -39,9 +39,9 @@ class Node(object):
         activity += np.dot(input_vector, self.weights)
         return activity
 
-    def activationFunction(self, input_vector):
+    def activationFunction(self, input_value):
         #sigmoid activation
-        return 1.0/(1.0 + math.exp(-input_vector))
+        return 1.0/(1.0 + math.exp(-input_value))
 
     def calculate(self, input_vector):
         activity_value = self.calculateActivity(input_vector)
