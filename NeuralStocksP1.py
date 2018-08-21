@@ -67,7 +67,7 @@ def get_alphavantage_data(ticker):
         print('File already exists. Loading data from CSV')
         df = pd.read_csv(file_to_save)
 
-get_alphavantage_data('googl')
+#get_alphavantage_data('googl')
 #for i in get_historical_data('googl', 10):
 #    print(i)
 

@@ -33,6 +33,33 @@ class FeedForwardNet(object):
         self.errors = np.array([0.0 for i in range(no_of_outputs)])
         self.alpha = learning_rate
 
+    def BackPropagate(self):
+        deltas_for_layer = []
+
+    def FeedForward(self, input_vector, true_outputs = None, Training = False):
+        for y in range(len(self.hidden_nodes)):
+            layer = self.hidden_nodes[y]
+            output = self.hidden_outputs[y]
+
+            for x in range(len(layer)):
+                layer[x].calculate(input_vector)
+                output[x] = layer[x].output
+                input_vector = output
+
+            hidden_outputs = self.hidden_outputs[-1]
+
+            for x in range(self.number_of_outputs):
+                self.output_layer[x].calculate(hidden_outputs)
+                self.network_output[x] = self.output_layer[x].output
+                
+                if Training:
+                    self.errors[x] = true_outputs[x] - self.network_output
+
+        if Training:
+            self.BackPropagate()
+
+        return self.network_output
+
     def getNetOutputs(self):
         return self.network_output
 
