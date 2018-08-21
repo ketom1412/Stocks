@@ -58,8 +58,9 @@ class FeedForwardNet(object):
                 delta_h = (output * (1.0 - output)) * prev_layer_factor
                 current_layer_deltas.append(delta_h)
                 layer[j].updateWeights(self.alpha, delta_h)
-                prev_layer = layer
-                deltas_for_layer = current_layer_deltas
+            
+            prev_layer = layer
+            deltas_for_layer = current_layer_deltas
 
     def FeedForward(self, input_vector, true_outputs = None, Training = False):
         for y in range(len(self.hidden_nodes)):
@@ -69,21 +70,20 @@ class FeedForwardNet(object):
             for x in range(len(layer)):
                 layer[x].calculate(input_vector)
                 output[x] = layer[x].output
-                input_vector = output
+            
+            input_vector = output
 
-            hidden_outputs = self.hidden_outputs[-1]
+        hidden_outputs = self.hidden_outputs[-1]
 
-            for x in range(self.number_of_outputs):
-                self.output_layer[x].calculate(hidden_outputs)
-                self.network_output[x] = self.output_layer[x].output
-                
-                if Training:
-                    self.errors[x] = true_outputs[x] - self.network_output
+        for x in range(self.number_of_outputs):
+            self.output_layer[x].calculate(hidden_outputs)
+            self.network_output[x] = self.output_layer[x].output
+            self.errors[x] = true_outputs[x] - self.output_layer[x].output
 
         if Training:
             self.BackPropagate()
-
-        return self.network_output
+        else:
+            return self.network_output
 
     def getNetOutputs(self):
         return self.network_output

@@ -12,11 +12,11 @@ from bs4 import BeautifulSoup as bs
 from pandas_datareader import data
 
 class Node(object):
-    def __init__(self, numbers_of_input):
-        self.inputs = numbers_of_input
+    def __init__(self, number_of_input):
+        self.inputs = number_of_input
         self.bias = random.uniform(0.0, 1.0)
-        self.weights = np.array([random.uniform(0.0, 1.0)] * numbers_of_input)
-        self.outputs = 0.0
+        self.weights = np.array([random.uniform(0.0, 1.0)] * number_of_input)
+        self.output = 0.0
 
     def output(self):
         return self.output
@@ -28,7 +28,7 @@ class Node(object):
         return self.bias
 
     def debug_info(self):
-        info = "Bias %f ; Weights:" %(self.bias)
+        info = "Bias: %f ; Weights:" %(self.bias)
         for w in self.weights:
             info+="%f," %(w)
         return info
