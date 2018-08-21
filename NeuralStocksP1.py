@@ -14,47 +14,6 @@ from pandas_datareader import data
 data_source = 'alphavantage'
 api_key = 'S13H3V357VQ534EE'
 
-class Node(object):
-    def __init__(self, numbers_of_input):
-        self.inputs = numbers_of_input
-        self.bias = random.uniform(0.0, 1.0)
-        self.weights = np.array([random.uniform(0.0, 1.0)] * numbers_of_input)
-        self.outputs = 0.0
-
-    def output(self):
-        return self.output
-
-    def getWeightAtIdx(self, idx):
-        return self.weights[idx]
-
-    def getBias(self):
-        return self.bias
-
-    def debug_info(self):
-        info = "Bias %f ; Weights:" %(self.bias)
-        for w in self.weights:
-            info+="%f," %(w)
-        return info
-
-    def calculateActivity(self, input_vector):
-        #linear basis function
-        activity = self.bias
-        activity += np.dot(input_vector, self.weights)
-        return activity
-
-    def activationFunction(self, input_vector):
-        #sigmoid activation
-        return 1.0/(1.0 + math.exp(-input_vector))
-
-    def calculate(self, input_vector):
-        activity_value = self.calculateActivity(input_vector)
-        self.output = self.activationFunction(activity_value)
-
-    def updateWeights(self, alpha, delta):
-        adjustments = self.output * alpha * delta
-        self.bias = self.bias + adjustments
-        self.weights = self.weights + adjustments
-
 def get_historical_data(name, number_of_days):
     data = []
     url = "https://finance.yahoo.com/quote/" + name + "/history/"
