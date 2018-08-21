@@ -52,3 +52,5 @@ def testCase3():
             test_network.debug_info()
 
     test_network.debug_info()
+
+testCase2()
