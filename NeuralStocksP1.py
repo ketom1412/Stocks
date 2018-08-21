@@ -10,6 +10,8 @@ import math
 import sys
 from bs4 import BeautifulSoup as bs
 from pandas_datareader import data
+from Node import Node
+from FeedForwardNet import FeedForwardNet
 
 data_source = 'alphavantage'
 api_key = 'S13H3V357VQ534EE'
@@ -71,3 +73,14 @@ def get_alphavantage_data(ticker):
 #for i in get_historical_data('googl', 10):
 #    print(i)
 
+
+test_network = FeedForwardNet(5, 2, [7, 10], 1, 0.1)
+
+training_vector = [0.45, 0.5, 0.55, 0.6, 0.65]
+training_output = [1.0]
+test_network.debug_info()
+
+for x in range(5000):
+    test_network.FeedForward(training_vector, training_output, Training = True)
+    if(x%1000 == 0):
+        test_network.debug_info()

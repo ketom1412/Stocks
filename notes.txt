@@ -1,0 +1,96 @@
+Stock Price Prediction:
+https://www.youtube.com/watch?v=7vunJlqLZok
+
+Market Research/Sentiment Analysis -> Algorithmic Trading
+Quantitative & Asset Management -> Portfolio Management
+Assistants/Personal Finance
+Fraudulent Detection -> GAN networks? Autoencoder?
+
+Numerai -> Open source hedge fund 
+Sentient Technologies
+
+Theory:
+Data Points to Use 
+    Tweets about a company (good/bad)
+    Reddit Posts (good/bad)
+    News headlines about a company (good/bad)
+    Past Prices
+    Social media, blog Posts
+    financial metadata (dividents, financial reports, etc)
+
+Sentiment Analysis:
+    Textblob
+    NLTK
+
+Classifictaion based on Sentiment Analysis then Regression
+LSTM (Long-Short Term Memory Module)
+Supervised learning + reinforcement learning
+
+Sairen Open AI - reinforcement learning
+Quandl - stock API 
+
+Github:
+https://github.com/llSourcell/AI_in_Finance
+
+Predicting Stock Prices #4:
+https://www.youtube.com/watch?v=SSu00IRRraY
+
+1. Sentiment Analysis
+2. Past Prices
+3. Sales Growth
+4. Dividents
+
+Reinforcement Learning for Stock Prediction:
+https://www.youtube.com/watch?v=05NqKJ0v7EE
+
+Q-Learning
+Sarsa
+Policy Gradient
+
+Github:
+https://github.com/llSourcell/Reinforcement_Learning_for_Stock_Prediction
+
+How to Predict Stock Prices Easily:
+https://www.youtube.com/watch?v=ftMq5ps503w
+
+Recurrent networks
+LSTM 
+
+Github:
+https://github.com/llSourcell/How-to-Predict-Stock-Prices-Easily-Demo
+
+Stock Market Prediction:
+https://www.youtube.com/watch?v=JuLCL3wCEAk
+
+Various external online data sources:
+    Google Trends 
+    Wikipedia 
+    Google Search 
+    Financial News 
+    Technical Indicators
+    Macroeconomic Indicators
+
+Quantopian
+Numerai 
+
+Github:
+https://github.com/llSourcell/Stock_Market_Prediction
+
+The Best Way to Visualize a Dataset Easily
+https://www.youtube.com/watch?v=yQsOFWqpjkE
+
+TSNE 
+
+Intro and getting stock price data 
+
+p1:
+https://www.youtube.com/watch?v=2BrpKpWwT2A&t=242s
+
+p2:
+https://www.youtube.com/watch?v=0e-lsstqCdY
+
+p3:
+https://www.youtube.com/watch?v=QAkOnV1-lIg
+
+p4:
+https://www.youtube.com/watch?v=19yyasfGLhk

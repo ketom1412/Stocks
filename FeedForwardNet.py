@@ -36,6 +36,31 @@ class FeedForwardNet(object):
     def BackPropagate(self):
         deltas_for_layer = []
 
+        for i in range(self.number_of_outputs):
+            output = self.network_output[i]
+            delta_o = self.errors[i] * (output * (1.0 - output))
+            self.output_layer[i].updateWeights(self.alpha, delta_o)
+            deltas_for_layer.append(delta_o)
+
+        prev_layer = self.output_layer
+
+        for y in range(len(self.hidden_nodes)):
+            layer = self.hidden_nodes[-(1+y)]
+            prev_layer_factor = 0
+            current_layer_deltas = []
+
+            for j in range(len(layer)):
+                output = layer[j].output
+                
+                for x in range(len(prev_layer)):
+                    prev_layer_factor += prev_layer[x].getWeightAtIdx(j) * deltas_for_layer[x]
+
+                delta_h = (output * (1.0 - output)) * prev_layer_factor
+                current_layer_deltas.append(delta_h)
+                layer[j].updateWeights(self.alpha, delta_h)
+                prev_layer = layer
+                deltas_for_layer = current_layer_deltas
+
     def FeedForward(self, input_vector, true_outputs = None, Training = False):
         for y in range(len(self.hidden_nodes)):
             layer = self.hidden_nodes[y]
