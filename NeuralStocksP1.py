@@ -50,6 +50,11 @@ class Node(object):
         activity_value = self.calculateActivity(input_vector)
         self.output = self.activationFunction(activity_value)
 
+    def updateWeights(self, alpha, delta):
+        adjustments = self.output * alpha * delta
+        self.bias = self.bias + adjustments
+        self.weights = self.weights + adjustments
+
 def get_historical_data(name, number_of_days):
     data = []
     url = "https://finance.yahoo.com/quote/" + name + "/history/"
