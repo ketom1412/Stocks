@@ -8,6 +8,8 @@ import numpy as np
 import random
 import math
 import sys
+import time
+import csv
 from bs4 import BeautifulSoup as bs
 from pandas_datareader import data
 from Node import Node
@@ -15,6 +17,7 @@ from FeedForwardNet import FeedForwardNet
 
 data_source = 'alphavantage'
 api_key = 'S13H3V357VQ534EE'
+random_seed = int(time.time())
 
 def get_historical_data(name, number_of_days):
     data = []
@@ -69,3 +72,24 @@ def get_alphavantage_data(ticker):
         print('File already exists. Loading data from CSV')
         df = pd.read_csv(file_to_save)
 
+def Seed_RNG(seed_val):
+    print("RANDOM SEED: ", seed_val)
+    random.seed(random_seed)
+    np.random.seed(random_seed)
+
+def examine_data_fram(df):
+    for name in df.columns:
+        print("----------")
+        print(df[name].dtype)
+
+        if df[name].dtype is np.dtype('O'):
+            print(df[name].value_counts())
+            print("Name: ", name)
+        else:
+            print(df[name].describe())
+
+def get_date_range(start, end):
+    return
+
+ticker = "SPY"
+get_alphavantage_data(ticker)
