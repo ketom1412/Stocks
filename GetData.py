@@ -93,3 +93,10 @@ def get_date_range(start, end):
 
 ticker = "SPY"
 get_alphavantage_data(ticker)
+
+with open('stock_market_data-SPY.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    line_count = 0
+
+    for row in csv_reader:
+        print(row)
