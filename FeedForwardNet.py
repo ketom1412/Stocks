@@ -74,9 +74,9 @@ class FeedForwardNet(object):
         for x in range(self.number_of_outputs):
             self.output_layer[x].calculate(hidden_outputs)
             self.network_output[x] = self.output_layer[x].output
-            self.errors[x] = true_outputs[x] - self.output_layer[x].output
 
         if Training:
+            self.errors[x] = true_outputs[x] - self.output_layer[x].output
             self.BackPropagate()
         else:
             return self.network_output
