@@ -121,19 +121,21 @@ def scale_on_lookback_window(num_of_days, variable, dataframe):
         dataframe[scaled_var][i] = (dataframe[variable][i] - data_avg) / (2.0*data_std)
 
 
-begin = "2013-01-01"
-stop = "2017-01-01"
+#begin = "2013-01-01"
+#stop = "2017-01-01"
+#scale_window = 30
+def StandardData(scale_window, start, end):
+    spy_df = get_date_range(start, end, "stock_market_data-SPY.csv")
+    spy_df[['Open', 'Close', 'Volume']] = spy_df[['Open', 'Close', 'Volume']].apply(pd.to_numeric)
 
-spy_df = get_date_range(begin, stop, "stock_market_data-SPY.csv")
-spy_df[['Open', 'Close', 'Volume']] = spy_df[['Open', 'Close', 'Volume']].apply(pd.to_numeric)
+    scale_on_lookback_window(scale_window, "Open", spy_df)
+    scale_on_lookback_window(scale_window, "Close", spy_df)
+    scale_on_lookback_window(scale_window, "Volume", spy_df)
 
-scale_window = 30
-scale_on_lookback_window(scale_window, "Open", spy_df)
-scale_on_lookback_window(scale_window, "Close", spy_df)
-scale_on_lookback_window(scale_window, "Volume", spy_df)
+    spy_df.drop(spy_df.index[0:scale_window], inplace = True)
+    spy_df.reset_index(drop=True, inplace=True)
 
-spy_df.drop(spy_df.index[0:scale_window], inplace = True)
-spy_df.reset_index(drop=True, inplace=True)
+    return spy_df
 
 spy_df["tomorrow_close"] = np.nan
 spy_df["week_close"] = np.nan
