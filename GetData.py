@@ -17,6 +17,7 @@ from FeedForwardNet import FeedForwardNet
 
 data_source = 'alphavantage'
 api_key = 'S13H3V357VQ534EE'
+ticker = "SPY"
 random_seed = int(time.time())
 
 def get_historical_data(name, number_of_days):
@@ -72,6 +73,8 @@ def get_alphavantage_data(ticker):
         print('File already exists. Loading data from CSV')
         df = pd.read_csv(file_to_save)
 
+    return df
+
 def Seed_RNG(seed_val):
     print("RANDOM SEED: ", seed_val)
     random.seed(random_seed)
@@ -88,15 +91,29 @@ def examine_data_fram(df):
         else:
             print(df[name].describe())
 
-def get_date_range(start, end):
-    return
+def get_date_range(start, end, csvFile):
+    df = pd.DataFrame(columns = ['Date','Low','High','Close','Open','Volume'])
 
-ticker = "SPY"
-get_alphavantage_data(ticker)
+    with open(csvFile) as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
 
-with open('stock_market_data-SPY.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
-    line_count = 0
+        start = dt.datetime.strptime(start, "%Y-%m-%d")
+        end = dt.datetime.strptime(end, "%Y-%m-%d")
 
-    for row in csv_reader:
-        print(row)
+        for row in csv_reader:
+            if row[1] != "Date":
+                tempDate = dt.datetime.strptime(row[1], "%Y-%m-%d")
+                if tempDate >= start and tempDate <= end:
+                    df.loc[-1,:] = row[1:]
+                    df.index = df.index + 1 
+    
+    return df
+
+begin = "2010-08-04"
+stop = "2011-08-04"
+
+spy_df = get_date_range(begin, stop, "stock_market_data-SPY.csv")
+spy_df[['Open', 'Close', 'Volume']] = spy_df[['Open', 'Close', 'Volume']].apply(pd.to_numeric)
+spy_df.info()
+
+
