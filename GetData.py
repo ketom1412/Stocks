@@ -141,16 +141,16 @@ def AddVar(num_days, var_to_pred, TickerDF):
     var = "%s_%d_day_forecast" %(var_to_pred, num_days)
     TickerDF[var] = np.nan
     
-    for i in range(num_days, len(df[var])):
-        df[var][i - num_days] = df[var_to_pred][i]
+    for i in range(num_days, len(TickerDF[var])):
+        TickerDF[var][i - num_days] = TickerDF[var_to_pred][i]
 
-        if df[var_to_pred][i] > df[var_to_pred][i - num_days]:
-            df[(var + "_up")][i - num_days] = 1
+        if TickerDF[var_to_pred][i] > TickerDF[var_to_pred][i - num_days]:
+            TickerDF[(var + "_up")][i - num_days] = 1
         else:
-            df[(var + "_up")][i - num_days] = 0
+            TickerDF[(var + "_up")][i - num_days] = 0
     
-    df.drop(df.index[-num_days:], inplace = True)
-    df.reset_index(drop = True, inplace = True)
+    TickerDF.drop(df.index[-num_days:], inplace = True)
+    TickerDF.reset_index(drop = True, inplace = True)
 
 Seed_RNG(random_seed)
 
