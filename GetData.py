@@ -149,7 +149,7 @@ def AddVar(num_days, var_to_pred, TickerDF):
         else:
             TickerDF[(var + "_up")][i - num_days] = 0
     
-    TickerDF.drop(df.index[-num_days:], inplace = True)
+    TickerDF.drop(TickerDF.index[-num_days:], inplace = True)
     TickerDF.reset_index(drop = True, inplace = True)
 
 Seed_RNG(random_seed)
