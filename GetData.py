@@ -196,15 +196,5 @@ print(len(weekly_residuals))
 spy_df["daily_residuals"] = daily_residuals
 spy_df["weekly_residuals"] = weekly_residuals
 
-print("Stats for daily predictions")
-error_count = 0
-false_pos_count = 0
-false_neg_count = 0
-up_preds = 0
-down_preds = 0
 
-for i in range(0, len(spy_df["tomorrow_up"])):
-    if spy_df["daily_residuals"][i] != spy_df["tomorrow_up"][i]:
-        error_count+=1
-    if spy_df["daily_residuals"][i] > spy_df["tomorrow_up"][i]:
-        error_count+=1
+
