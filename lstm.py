@@ -13,7 +13,6 @@ data_source = 'kaggle' #alphavantage or kaggle
 
 if data_source == 'alphavantage':
     #Loading data
-    api_key = 'S13H3V357VQ534EE'
 
     #Company ticker
     ticker = "INTC" #American Airlines
