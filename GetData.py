@@ -18,7 +18,7 @@ from Performance import Stats
 from RunData import runData
 
 data_source = 'alphavantage'
-api_key = 'S13H3V357VQ534EE'
+api_key = '' 
 ticker = "SPY"
 random_seed = int(time.time())
 
