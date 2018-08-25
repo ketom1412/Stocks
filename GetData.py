@@ -152,14 +152,14 @@ def AddVar(num_days, var_to_pred, TickerDF):
 
     return TickerDF
 
-start = '2013-01-01'
-end = '2017-01-01'
-window = 30
+# start = '2013-01-01'
+# end = '2017-01-01'
+# window = 30
 
-df = StandardData(window, start, end, "stock_market_data-SPY.csv")
-df = AddVar(10, "Close_scaled", df)
-Seed_RNG(random_seed)
-
+# df = StandardData(window, start, end, "stock_market_data-SPY.csv")
+# df = AddVar(10, "Close_scaled", df)
+# Seed_RNG(random_seed)
+# df = runData(df, 3)
 
 
 
