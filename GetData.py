@@ -14,6 +14,8 @@ from bs4 import BeautifulSoup as bs
 from pandas_datareader import data
 from Node import Node
 from FeedForwardNet import FeedForwardNet
+from Performance import Stats
+from RunData import runData
 
 data_source = 'alphavantage'
 api_key = 'S13H3V357VQ534EE'
@@ -120,12 +122,8 @@ def scale_on_lookback_window(num_of_days, variable, dataframe):
         data_std = np.std(data_slice)
         dataframe[scaled_var][i] = (dataframe[variable][i] - data_avg) / (2.0*data_std)
 
-
-#begin = "2013-01-01"
-#stop = "2017-01-01"
-#scale_window = 30
-def StandardData(scale_window, start, end):
-    spy_df = get_date_range(start, end, "stock_market_data-SPY.csv")
+def StandardData(scale_window, start, end, csvFile):
+    spy_df = get_date_range(start, end, csvFile)
     spy_df[['Open', 'Close', 'Volume']] = spy_df[['Open', 'Close', 'Volume']].apply(pd.to_numeric)
 
     scale_on_lookback_window(scale_window, "Open", spy_df)
@@ -152,7 +150,16 @@ def AddVar(num_days, var_to_pred, TickerDF):
     TickerDF.drop(TickerDF.index[-num_days:], inplace = True)
     TickerDF.reset_index(drop = True, inplace = True)
 
+    return TickerDF
+
+start = '2013-01-01'
+end = '2017-01-01'
+window = 30
+
+df = StandardData(window, start, end, "stock_market_data-SPY.csv")
+df = AddVar(10, "Close_scaled", df)
 Seed_RNG(random_seed)
+
 
 
 

@@ -58,3 +58,5 @@ def runData(df, input_vars, output_vars, hidden_nodes_list, learning_rate, train
 
     for x in range(len(output_vars)):
         df[(output_vars[x] + "_residuals")] = residuals[x]
+
+    return df
